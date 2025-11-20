@@ -41,16 +41,11 @@ def read_gt_file(gt_path):
             parts = line.split(",")
             frame_id = int(parts[0])
             track_id = int(float(parts[1]))  # Convert float to int
-            # Coordinates are x1, y1, x2, y2
-            x1 = float(parts[2])
-            y1 = float(parts[3])
-            x2 = float(parts[4])
-            y2 = float(parts[5])
-            # Convert to x, y, w, h format
-            x = x1
-            y = y1
-            w = x2 - x1
-            h = y2 - y1
+            # Coordinates are already in x, y, w, h format (MOT format)
+            x = float(parts[2])
+            y = float(parts[3])
+            w = float(parts[4])
+            h = float(parts[5])
 
             if frame_id not in frame_data:
                 frame_data[frame_id] = []

@@ -103,8 +103,8 @@ def select_targets(
         bbox = None
         if crop_info:
             for crop_item in crop_info:
-                print(crop_item)
-                print(f"file_path: {f}")
+                # print(crop_item)
+                # print(f"file_path: {f}")
                 if (
                    f.replace("/home/seanachan/ByteTrack_ultralytics/", "")
                     == crop_item.crop_path
@@ -125,10 +125,10 @@ def select_targets(
             )
         else:
             crop_details = ""
-        print(f"crop_details: {crop_details}")
+        # print(f"crop_details: {crop_details}")
 
         payload = {
-            "model": "qwen3-vl",
+            "model": "qwen2.5vl",
             "prompt": (
                 f"Don't show your thought process."
                 f"The size of the original image is height: {img_size['img_h']}, "
