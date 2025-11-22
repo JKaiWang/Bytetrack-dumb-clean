@@ -117,10 +117,10 @@ def select_targets(
 
         if bbox:
             # Calculate relative position
-            center_x = (bbox['x1'] + bbox['x2']) / 2
-            center_y = (bbox['y1'] + bbox['y2']) / 2
-            rel_x = center_x / img_size['img_w']  # 0.0 = leftmost, 1.0 = rightmost
-            
+            center_x = (bbox["x1"] + bbox["x2"]) / 2
+            center_y = (bbox["y1"] + bbox["y2"]) / 2
+            rel_x = center_x / img_size["img_w"]  # 0.0 = leftmost, 1.0 = rightmost
+
             # Determine horizontal position - be more strict about "left"
             if rel_x < 0.35:
                 position_desc = "on the left side of the road"
@@ -128,13 +128,15 @@ def select_targets(
                 position_desc = "on the right side of the road"
             else:
                 position_desc = "in the center or directly ahead"
-            
+
             crop_details = (
-                f"Context: This is a vehicle cropped from a dashcam/traffic scene.\n"
+                f"Context: This is a {crop.get_class(crop.cls)} cropped from a dashcam/traffic scene.\n"
                 f"Location: {position_desc} (x={center_x:.0f}/{img_size['img_w']}px = {rel_x*100:.0f}% from left)\n\n"
             )
         else:
-            crop_details = "Context: This is a vehicle cropped from a traffic scene.\n\n"
+            crop_details = (
+                f"Context: This is a person cropped from a traffic scene.\n\n"
+            )
         # print(f"crop_details: {crop_details}")
 
         payload = {
