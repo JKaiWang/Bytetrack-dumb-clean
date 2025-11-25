@@ -7,10 +7,10 @@ EXP_PATH = os.path.join(HOME, f"exps/results_{result_num}/")
 LABELS_PATH = os.path.join(HOME, f"refer-kitti/KITTI/labels_with_ids/image_02/")
 KITTI_PATH = f"{HOME}/refer-kitti/KITTI/training/image_02/"
  
-EXP_NUM="0011"
-expression = "people"
+EXP_NUM="0013"
+expression = "women"
 images_dir = os.path.join(KITTI_PATH, EXP_NUM)
-predict_file = os.path.join(EXP_PATH, EXP_NUM, expression, "predict.txt")
+predict_file = os.path.join(EXP_PATH, EXP_NUM, expression, "gt.txt")
 
 # Try to check if the gt file exists and print a few lines
 try:
