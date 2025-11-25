@@ -66,7 +66,6 @@ def select_targets(
         crops_dir: Directory containing cropped images named as "i{track_id}_f{frame_id}.jpg"
         prompt: Text prompt for LLM target selection
         threshold: Similarity threshold (not used in LLM-based selection)
-        device: Device to use (cpu/cuda)
         quiet: Whether to suppress output
 
     Returns:
