@@ -5,7 +5,6 @@ import json
 import re
 from PIL import Image
 import io
-import time
 
 API_URL = "http://localhost:11434/api/generate"
 
@@ -132,7 +131,6 @@ def select_targets(
             crop_details = (
                 f"Context: This is a person cropped from a traffic scene.\n\n"
             )
-        print("BBOX LOG:", bbox, "RAND:", time.time())
         object = "object" if crop == None else crop.get_class(crop.cls)
         payload = {
             "model": "qwen2.5vl",
@@ -154,8 +152,7 @@ def select_targets(
         }
 
         try:
-            # resp = requests.post(API_URL, json=payload, stream=True)
-            resp = requests.post(API_URL, json=payload)
+            resp = requests.post(API_URL, json=payload, stream=True)
             resp.raise_for_status()
         except Exception as e:
             if not quiet:
@@ -172,7 +169,6 @@ def select_targets(
                         result_text += data["response"]
                 except (json.JSONDecodeError, UnicodeDecodeError):
                     continue
-        print(f"[Result]: {result_text}")
         if not quiet:
             print(f"[DEBUG] LLM response: {result_text.strip()}")
 
